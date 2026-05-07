@@ -82,25 +82,25 @@ useEffect(() => {
   const riskColor = risk < 35 ? "#4ade80" : risk < 70 ? "#fbbf24" : "#f87171";
 
   const chartData = [
-    { month: "Jan", revenue: Math.round(revenue * 0.5) },
-    { month: "Feb", revenue: Math.round(revenue * 0.65) },
-    { month: "Mar", revenue: Math.round(revenue * 0.72) },
-    { month: "Apr", revenue: Math.round(revenue * 0.84) },
-    { month: "May", revenue: Math.round(revenue * 0.92) },
-    { month: "Jun", revenue: revenue },
+    { month: "Jan", revenue: Math.round(prediction?.revenue ? prediction.revenue * 0.5 : 0) },
+    { month: "Feb", revenue: Math.round(prediction?.revenue ? prediction.revenue * 0.65 : 0) },
+    { month: "Mar", revenue: Math.round(prediction?.revenue ? prediction.revenue * 0.72 : 0) },
+    { month: "Apr", revenue: Math.round(prediction?.revenue ? prediction.revenue * 0.84 : 0) },
+    { month: "May", revenue: Math.round(prediction?.revenue ? prediction.revenue * 0.92 : 0) },
+    { month: "Jun", revenue: prediction?.revenue ?? 0 },
   ];
 
   const whatIfData = [
-    { scenario: "↑ Price +10%", revenue: revenue + 40000, risk: Math.min(95, risk + 6), delta: "+₹40,000" },
-    { scenario: "↑ Marketing 2×", revenue: revenue + 65000, risk: Math.min(95, risk + 14), delta: "+₹65,000" },
-    { scenario: "↑ Discount +5%", revenue: revenue + 22000, risk: Math.min(95, risk + 20), delta: "+₹22,000" },
+    { scenario: "↑ Price +10%", revenue: prediction?.revenue ? prediction.revenue + 40000 : 0, risk: Math.min(95, risk + 6), delta: "+₹40,000" },
+    { scenario: "↑ Marketing 2×", revenue: prediction?.revenue ? prediction.revenue + 65000 : 0, risk: Math.min(95, risk + 14), delta: "+₹65,000" },
+    { scenario: "↑ Discount +5%", revenue: prediction?.revenue ? prediction.revenue + 22000 : 0, risk: Math.min(95, risk + 20), delta: "+₹22,000" },
   ];
 
   const sections = SECTION_MAP[active] || [];
 
   const kpiCards = [
     { label: "REVENUE", value: `₹${prediction?.revenue?.toLocaleString()}`, sub: "Projected", accent: "#22d3ee", bg: "rgba(34,211,238,0.08)" },
-    { label: "PROFIT", value: `₹${prediction?.predicted_profit?.toLocaleString()}`, sub: "After costs", accent: "#a78bfa", bg: "rgba(167,139,250,0.08)" },
+    { label: "PROFIT", value: `₹${prediction?.profit?.toLocaleString() ?? 0}`, sub: "After costs", accent: "#a78bfa", bg: "rgba(167,139,250,0.08)" },
     { label: "CUSTOMERS", value: customers.toLocaleString(), sub: "Active users", accent: "#f472b6", bg: "rgba(244,114,182,0.08)" },
     { label: "RISK LEVEL", value: riskLabel, sub: `Score: ${risk}/100`, accent: riskColor, bg: `rgba(${riskColor === "#4ade80" ? "74,222,128" : riskColor === "#fbbf24" ? "251,191,36" : "248,113,113"},0.08)` },
   ];
