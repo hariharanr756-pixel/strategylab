@@ -395,14 +395,14 @@ function MetaStat({ label, value }) {
 
 const styles = {
   root: {
-    minHeight: "100vh",
-    display: "flex",
-    background: "#060b18",
-    color: "#e2e8f0",
-    fontFamily: "'DM Mono', 'JetBrains Mono', 'Fira Code', monospace",
-  },
+  minHeight: "100vh",
+  display: "flex",
+  flexDirection: window.innerWidth < 768 ? "column" : "row",
+  background: "#060b18",
+  color: "#e2e8f0",
+},
   sidebar: {
-    width: "220px",
+    width: window.innerWidth <768 ? "100%" : "280px",
     flexShrink: 0,
     padding: "28px 16px",
     display: "flex",
