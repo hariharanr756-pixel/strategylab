@@ -30,6 +30,7 @@ const SECTION_MAP = {
 };
 
 export default function App() {
+  const isMobile = window.innerWidth <= 768;
   const [active, setActive] = useState("Dashboard");
   const [price, setPrice] = useState(100);
   const [marketing, setMarketing] = useState(50000);
