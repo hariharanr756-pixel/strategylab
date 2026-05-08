@@ -35,6 +35,8 @@ export default function App() {
   const [marketing, setMarketing] = useState(50000);
   const [customers, setCustomers] = useState(3000);
   const [prediction, setPrediction] = useState(null);
+  const [loading, setLoading] = useState(false);
+const [error, setError] = useState("");
   const [discount, setDiscount] = useState(20);
   const [cost, setCost] = useState(10000);
 
@@ -43,7 +45,11 @@ const logout = async  () => {
   window.location.href = "/";
 };
 const callBackend = async () => {
+  setLoading(true);
+setError("");
+try {
   const response = await fetch("https://strategylab-api.onrender.com/predict", {
+
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -59,6 +65,12 @@ const callBackend = async () => {
 
   const data = await response.json();
   setPrediction(data);
+} catch (err) {
+  setError("Backend connection failed");
+  console.error(err);
+} finally {
+  setLoading(false);
+}
 };
 
 useEffect(() => {
