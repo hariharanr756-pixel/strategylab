@@ -100,7 +100,7 @@ useEffect(() => {
 
   const kpiCards = [
     { label: "REVENUE", value: `₹${prediction?.revenue?.toLocaleString()}`, sub: "Projected", accent: "#22d3ee", bg: "rgba(34,211,238,0.08)" },
-    { label: "PROFIT", value: `₹${prediction?.profit?.toLocaleString() ?? 0}`, sub: "After costs", accent: "#a78bfa", bg: "rgba(167,139,250,0.08)" },
+    { label: "PROFIT", value: `₹${prediction?.predicted_profit?.toLocaleString() ?? 0}`, sub: "After costs", accent: "#a78bfa", bg: "rgba(167,139,250,0.08)" },
     { label: "CUSTOMERS", value: customers.toLocaleString(), sub: "Active users", accent: "#f472b6", bg: "rgba(244,114,182,0.08)" },
     { label: "RISK LEVEL", value: riskLabel, sub: `Score: ${risk}/100`, accent: riskColor, bg: `rgba(${riskColor === "#4ade80" ? "74,222,128" : riskColor === "#fbbf24" ? "251,191,36" : "248,113,113"},0.08)` },
   ];

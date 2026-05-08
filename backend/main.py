@@ -42,14 +42,12 @@ def predict(input_data: PredictionInput):
             "marketing_multiplier": multiplier,
             "predicted_profit": round(scenario_profit, 2)
         })
-
     return {
-        "predicted_profit": round(predicted_profit, 2),
-        "risk": risk,
-        "revenue": round(revenue, 2),
-        "recommendation": recommendation,
-        "what_if_analysis": what_if
-    }
+    "revenue": revenue,
+    "predicted_profit": int(revenue - input_data.cost + (input_data.marketing_spend * 0.2)),
+    "risk": min(95, int(input_data.marketing_spend / 1000))
+}
+   
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
