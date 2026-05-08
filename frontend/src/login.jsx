@@ -24,8 +24,8 @@ export default function Login() {
       alert("Login Successful");
 
       navigate("/dashboard");
-    } catch (err) {
-      alert(err.message);
+    } catch (error) {
+      alert(error.message);
     } finally {
       setLoading(false);
     }
@@ -65,6 +65,7 @@ export default function Login() {
 
         <button
           onClick={login}
+          disabled={loading}
           style={styles.button}
         >
           {loading ? "Logging in..." : "Login"}
